@@ -21,6 +21,7 @@
                     <a href="javascript:void(0);" v-on:click="selectCourse(props.item)">{{props.item.name}}</a>
                     ({{sentencesCount[props.item._id]}} sentences)
                     by <img class="avatar" v-for="id in props.item.admin_ids" v-bind:src="avatarUrls[id]" />
+                    <a href="javascript:void(0);" v-on:click="downloadCourse(props.item)"><i class="fa fa-download"></i></a>
                 </template>
             </list-editor>
             <p class="description">

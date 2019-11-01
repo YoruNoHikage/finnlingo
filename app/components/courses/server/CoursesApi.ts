@@ -48,6 +48,27 @@ class CoursesApi {
     }
 
     @Decorators.method
+    static downloadCourse(courseId, callback?) {
+        var user = ACL.getUserOrThrow(this);
+
+        const course = Courses.findOne(courseId);
+
+        let lessonIds = [];
+        for (let row of course.tree) {
+            lessonIds = lessonIds.concat(row.lessons.map(l => l.id));
+        }
+
+        const sentences = Sentences.find({ lessonId: { $in: lessonIds } }).map(doc => doc);
+        const words = Words.find({ lessonId: { $in: lessonIds } }).map(doc => doc);
+
+        return {
+            ...course,
+            sentences,
+            words,
+        };
+    }
+
+    @Decorators.method
     static removeCourse(course, callback?) {
         var user = ACL.getUserOrThrow(this);
         Courses.remove(

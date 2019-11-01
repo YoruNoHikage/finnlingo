@@ -47,6 +47,30 @@ class CoursesComponent
         });
     }
 
+    downloadCourse(course) {
+        CoursesApi.downloadCourse(course._id, (err, res) => {
+            if (!err) {
+                const a = document.createElement("a");
+
+                document.body.appendChild(a);
+
+                a.style.display = "none";
+
+                const blob = new Blob([JSON.stringify(res)], {type: "application/json"});
+                const url = window.URL.createObjectURL(blob);
+
+                a.href = url;
+                a.download = course._id + '.json';
+                a.click();
+                window.URL.revokeObjectURL(url);
+
+                document.body.removeChild(a);
+            }
+            else
+                alert("Error occured: " + err);
+        });
+    }
+
     canEdit(course) {
         return course.admin_ids.indexOf(this.user._id) > -1;
     }
