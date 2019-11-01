@@ -1,12 +1,12 @@
 Meteor.startup(() => {
 
     ServiceConfiguration.configurations.upsert(
-        { service: 'facebook' },
+        { service: 'github' },
         {
             $set: {
                 loginStyle: "redirect",
-                appId: process.env.FB_APP_ID,
-                secret: process.env.FB_APP_SECRET
+                clientId: process.env.GITHUB_APP_ID,
+                secret: process.env.GITHUB_APP_SECRET
             }
         }
     );
