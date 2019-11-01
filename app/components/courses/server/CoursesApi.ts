@@ -14,10 +14,10 @@ class CoursesApi {
         
         return Sentences.find({ lessonId: { $in: lessonIds }, testType: { $ne: SentenceTestType.Notes } }).count();
     }
+
     @Decorators.method
     static getAvatarUrl(userId, callback?) {
-        let user = Meteor.users.findOne(userId, { fields: { "services.facebook.id": 1} });
-        return "http://graph.facebook.com/" + user.services.facebook.id + "/picture";
+        return "";
     }
 
     @Decorators.method

@@ -8,7 +8,7 @@ class SentencesApi {
     @Decorators.method
     static addSentence(text: string, lessonId: string, callback?) {
         var user = ACL.getUserOrThrow(this);
-        var userDisplayInfo = { _id: user._id, avatarUrl: "http://graph.facebook.com/" + user.services.facebook.id + "/picture", name: user.profile.name };
+        var userDisplayInfo = { _id: user._id, avatarUrl: "", name: user.profile.name };
         var tmpSentences = Sentences.find({ lessonId: lessonId }, { sort: { order: -1 }}).fetch();
         Sentences.insert({
             text: text,
@@ -26,7 +26,7 @@ class SentencesApi {
     @Decorators.method
     static updateSentence(sentenceModel: Sentence, callback?) {
         var user = ACL.getUserOrThrow(this);
-        var userDisplayInfo = { _id: user._id, avatarUrl: "http://graph.facebook.com/" + user.services.facebook.id + "/picture", name: user.profile.name };
+        var userDisplayInfo = { _id: user._id, avatarUrl: "", name: user.profile.name };
 
         Sentences.update(
             { _id: sentenceModel._id }, 
