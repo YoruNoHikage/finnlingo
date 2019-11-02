@@ -11,8 +11,34 @@ Meteor.startup(() => {
         }
     );
 
+    Accounts.onCreateUser((options, user) => {
+        if (user.services.github) {
+            user.username = user.services.github.username.toLowerCase();
+        }
+
+        if (options.profile) {
+          user.profile = options.profile;
+        }
+
+        user.selectedCourseId = null;
+        user.study = {
+            dailyGoal: 20,
+            daysStudied: 0,
+            lastDateStudied: null,
+            lastDateXP: null,
+            streakDays: 0,
+            streakLastDate: null,
+            xp: 0,
+            completedLessonIds: [],
+            learnedWords: [],
+        };
+
+        return user;
+    });
+
+
     Meteor.publish('userData', function() {
-        return Meteor.users.find({ _id: this.userId }, { fields: { study: 1 } });
+        return Meteor.users.find({ _id: this.userId }, { fields: { study: 1, username: 1 } });
     });
 
 });

@@ -9,7 +9,6 @@ class CoursesComponent
     course: Course = null;
     loggingIn: boolean = true;
     user: User = null;
-    avatarUrls: { [key: string]: string } = {};
     sentencesCount: { [key: string]: number } = {};
 
     created() {
@@ -26,13 +25,6 @@ class CoursesComponent
                     this.sentencesCount[c._id] = count;
                     this.courses = this.courses.sort((a, b) => this.sentencesCount[b._id] - this.sentencesCount[a._id]);
                 });
-                for (let id of c.admin_ids) {
-                    if (!this.avatarUrls[id]) {
-                        CoursesApi.getAvatarUrl(id, (err, url) => {
-                            this.$set(this.avatarUrls, id, url);
-                        });
-                    }
-                }
             }
 
         })

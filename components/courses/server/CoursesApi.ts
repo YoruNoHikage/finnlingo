@@ -16,11 +16,6 @@ class CoursesApi {
     }
 
     @Decorators.method
-    static getAvatarUrl(userId, callback?) {
-        return "";
-    }
-
-    @Decorators.method
     static addCourse(name: string, callback?) {
         var user = ACL.getUserOrThrow(this);
         Courses.insert({

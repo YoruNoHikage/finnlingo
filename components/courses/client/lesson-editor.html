@@ -188,9 +188,9 @@
                     v-on:remove="removeTranslation">
                 </list-editor>
                 <p class="description">
-                    <span v-if="selectedSentence.author">Created by: <img class="avatar" v-bind:src="selectedSentence.author.avatarUrl" /> {{selectedSentence.author.name}}</span>
+                    <span v-if="selectedSentence.author">Created by: {{selectedSentence.author.username}}</span>
                     <br />
-                    <span v-if="selectedSentence.editor">Modified by: <img class="avatar" v-bind:src="selectedSentence.editor.avatarUrl" /> {{selectedSentence.editor.name}}</span>
+                    <span v-if="selectedSentence.editor">Modified by: {{selectedSentence.editor.username}}</span>
                 </p>
             </div>
             <div class="dimmer" v-if="displayStatus" v-on:click="displayStatus=false;"></div>
