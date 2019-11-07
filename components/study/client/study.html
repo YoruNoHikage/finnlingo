@@ -1,8 +1,9 @@
 <template name="study">
     <div class="content study">
-        <div v-if="!finished">
-            <top-bar back-link="/" back-link-text="Exit lesson" />
+        <top-bar v-if="!finished" back-link="/" back-link-text="Exit lesson" />
+        <top-bar v-if="!!finished"/>
 
+        <div v-if="!finished">
             <template v-if="sentences[index] && (sentences[index].testType == SentenceTestType.Default || sentences[index].testType == SentenceTestType.ConstructSentence)">
                 <div class="progress-bar"><span v-bind:style="{ width: (index/sentences.length)*100 + '%' }" class="progress-bar-progress"></div>
                 <h3>Translate this sentence</h3>
@@ -102,8 +103,6 @@
             </div>
         </div>
         <div class="finished" v-if="!!finished">
-            <top-bar />
-
             <h2>Lesson finished!</h2>
             <transition name="finished" mode="in-out">
                 <div class="plus-xp" v-if="showXP">
