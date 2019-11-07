@@ -3,15 +3,6 @@
     background-color: #D9D8D7;
     position: relative;
 }
-.lesson-editor > .top-bar {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 30px;
-}
-.lesson-editor .top-bar .back-link {
-    position: absolute;
-}
 .lesson-editor .top-bar {
     margin-left: 0;
     margin-right: 0;
@@ -37,7 +28,7 @@
     border-radius: 10px;
     margin-left: 25px;
     margin-bottom: 15px;
-    margin-top: 75px;
+    margin-top: 15px;
 }
 
 .lesson-editor .words-column {
@@ -101,8 +92,6 @@
     .lesson-editor .top-bar .menu {
         margin: 0 auto;
         display: block;
-        width: 200px;
-        padding-left: 40px;
     }
     .lesson-editor .top-bar .menu a {
         padding: 3px 9px;
@@ -117,11 +106,6 @@
         text-decoration: underline;
     }
 
-    .lesson-editor .words-column,
-    .lesson-editor .sentences-column,
-    .lesson-editor .editor-column {
-        margin-top: 95px;
-    }
     .lesson-editor .words-column {
         width: 40%;
     }
@@ -150,9 +134,6 @@
     width: 26px;
     height: 26px;
     text-align: center;
-    position: absolute;
-    right: 25px;
-    top: 12px;
 }
 .lesson-editor .status {
     position: absolute;
