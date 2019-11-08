@@ -3,7 +3,7 @@
         <top-bar v-if="!finished" back-link="/" back-link-text="Exit lesson" />
         <top-bar v-if="!!finished"/>
 
-        <div v-if="!finished">
+        <div class="ongoing" v-if="!finished">
             <template v-if="sentences[index] && (sentences[index].testType == SentenceTestType.Default || sentences[index].testType == SentenceTestType.ConstructSentence)">
                 <div class="progress-bar"><span v-bind:style="{ width: (index/sentences.length)*100 + '%' }" class="progress-bar-progress"></div>
                 <h3>Translate this sentence</h3>
