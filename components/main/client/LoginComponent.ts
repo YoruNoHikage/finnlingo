@@ -1,5 +1,7 @@
 @Decorators.vueComponent("login")
 class LoginComponent {
+  $router: VueRouter;
+
   isLogin: boolean = true;
   formError: string = '';
 
@@ -14,7 +16,6 @@ class LoginComponent {
   onUpdateForm(e) {
     this.formError = '';
     e.target.setCustomValidity('');
-    console.log(e.target)
   }
 
   onSubmitSignup(e) {
@@ -37,6 +38,9 @@ class LoginComponent {
         console.log(err);
         this.formError = "Une erreur est survenue.";
       }
+      else {
+        this.$router.push('/');
+      }
     });
   }
 
@@ -49,11 +53,14 @@ class LoginComponent {
       (err) => {
         if (err) {
           this.formError = "L'identifiant ou le mot de passe est erroné.";
-          e.target.username.setCustomValidity("L'identifiant ou le mot de passe est erroné.");
           e.target.email.setCustomValidity("L'identifiant ou le mot de passe est erroné.");
+          e.target.password.setCustomValidity("L'identifiant ou le mot de passe est erroné.");
         }
         else if (err) {
           this.formError = "Une erreur est survenue.";
+        }
+        else {
+          this.$router.push('/');
         }
       },
     );
