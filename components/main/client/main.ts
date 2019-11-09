@@ -4,7 +4,7 @@ Meteor.startup(() => {
         mode: 'history',
         routes: [
             { path: '/', component: new DashboardComponent() },
-            { path: '/login', component: { template: VueTemplate['login'] } },
+            { path: '/login', component: new LoginComponent() },
             { path: '/study/:courseid/lessons/:lessonid', component: new StudyComponent() },
             { path: '/courses', component: new CoursesComponent() },
             { path: '/courses/:id', component: new CoursesComponent() },

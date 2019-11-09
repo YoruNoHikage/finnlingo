@@ -1,0 +1,57 @@
+<template name="login">
+    <div class="content login">
+        <h1>Apprendre le breton façon Duolingo</h1>
+        <p>
+            Interessé par la langue bretonne ? Ce projet reprend les meilleures fonctionnalités de Duolingo afin de recréer l'expérience pour apprendre le breton. Si vous rencontrez des phrases erronées ou des réponses qui auraient dû être acceptées, n'hésitez pas à m'en faire part à yorunohikage[at]gmail.com.
+        </p>
+        <p>
+            Ce projet a été créé à la base pour enseigner le finnois à partir de l'anglais, l'interface est donc en anglais mais le seul cours actuel est breton à partir du français. L'inscription est aussi obligatoire pour l'instant, il est possible qu'un jour une version sans inscription soit disponible.
+        </p>
+        <div class="login-panel">
+            <h2 v-if="!isLogin">S'inscrire</h2>
+            <h2 v-if="isLogin">Se connecter</h2>
+            <form v-if="!isLogin" method="POST" v-on:submit="onSubmitSignup" v-on:change="onUpdateForm">
+                <label>
+                    <input v-model="username" type="text" name="username" placeholder="Nom d'utilisateur" required v-on:change="onUpdateForm"/>
+                </label>
+                <label>
+                    <input v-model="email" type="email" name="email" placeholder="Email" required v-on:change="onUpdateForm"/>
+                </label>
+                <label>
+                    <input v-model="password" type="password" name="password" placeholder="Mot de passe" required v-on:change="onUpdateForm" />
+                </label>
+                <button class="form-submit" type="submit">S'inscrire</button>
+                <p class="error" v-if="formError">{{ formError }}</p>
+            </form>
+            <form v-if="isLogin" method="POST" v-on:submit="onSubmitLogin" v-on:change="onUpdateForm">
+                <label>
+                    <input v-model="email" type="text" name="email" placeholder="Nom d'utilisateur ou email" required v-on:change="onUpdateForm" />
+                </label>
+                <label>
+                    <input v-model="password" type="password" name="password" placeholder="Mot de passe" required v-on:change="onUpdateForm" />
+                </label>
+                <button class="form-submit" type="submit">Se connecter</button>
+                <p class="error" v-if="formError">{{ formError }}</p>
+            </form>
+
+            <div class="separator">
+                <hr />
+                <span>Ou</span>
+            </div>
+
+            <button class="github-button" v-on:click="Meteor.loginWithGithub()">
+                <span class="fa fa-github" />
+                Se connecter avec Github
+            </button>
+
+            <div v-if="isLogin" class="change-login-option">
+                Pas encore inscrit ?
+                <button class="button-link" v-on:click="isLogin = false">S'inscrire</button>
+            </div>
+            <div v-if="!isLogin" class="change-login-option">
+                Vous avez déjà un compte ?
+                <button class="button-link" v-if="!isLogin" v-on:click="isLogin = true; formError = ''">Se connecter</button>
+            </div>
+        </div>
+    </div>
+</template>
