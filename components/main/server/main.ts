@@ -20,7 +20,9 @@ Meteor.startup(() => {
           user.profile = options.profile;
         }
 
-        user.selectedCourseId = null;
+        const courses = Courses.find().fetch();
+
+        user.selectedCourseId = courses[0] ? courses[0]._id : null;
         user.study = {
             dailyGoal: 20,
             daysStudied: 0,
