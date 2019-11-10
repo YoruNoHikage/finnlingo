@@ -63,6 +63,10 @@ class CoursesComponent
         });
     }
 
+    canAdd() {
+        return this.user.username === 'yorunohikage';
+    }
+
     canEdit(course) {
         return course.admin_ids.indexOf(this.user._id) > -1;
     }

@@ -11,6 +11,7 @@
             <h2>Select course to study</h2>
             <list-editor 
                 v-bind:items="courses" 
+                v-bind:can-add="canAdd"
                 v-bind:can-edit="canEdit"
                 v-bind:can-remove="canEdit"
                 new-item-text="Create a new course"
@@ -20,14 +21,13 @@
                 <template scope="props">
                     <a href="javascript:void(0);" v-on:click="selectCourse(props.item)">{{props.item.name}}</a>
                     ({{sentencesCount[props.item._id]}} sentences)
-                    by <a href="javascript:void(0);" v-on:click="downloadCourse(props.item)"><i class="fa fa-download"></i></a>
+                </template>
+                <template slot="buttons" scope="props">
+                    <a href="javascript:void(0);" v-on:click="downloadCourse(props.item)"><i class="fa fa-download"></i></a>
                 </template>
             </list-editor>
             <p class="description">
-                Feel free to create your own course. After that, use pencil icon next to it's name to edit it.
-                Only you will be able to edit the course you created.
-                If you want to get access to editing a course that have been created already or share your course with others,
-                that can be arranged (for now manually, please <a href="https://www.facebook.com/andrey.markeev.5">contact me on Facebook</a>).
+                If you want to get access to editing a course (or adding a new one), please send me an email <a href="mailto:yorunohikage@gmail.com">yorunohikage@gmail.com</a> or contact me on Twitter <a href="https://twitter.com/yorunohikage">@yorunohikage</a>.
             </p>
         </div>
     </div>
