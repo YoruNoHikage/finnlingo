@@ -13,8 +13,9 @@
 }
 
 .study .sentence .word-with-hint {
-    text-decoration-style: dashed;
+    text-decoration: none;
     color: #444;
+    border-bottom: 2px dotted#AFAFAF;
 }
 .study .sentence .word-with-hint.new {
     color: #D88700;
