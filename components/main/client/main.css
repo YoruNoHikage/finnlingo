@@ -93,6 +93,10 @@ div.clearfix {
 	color: #B7B9B8;
 }
 
+.list-editor .actions {
+	float: right;
+}
+
 .content {
 	margin: 0 auto;
 	max-width: 600px;
