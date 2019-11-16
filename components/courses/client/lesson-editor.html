@@ -122,7 +122,7 @@
                     <a href="javascript: void(0);" v-if="windowWidth < 700" v-on:click="previewNotes = false">Back</a>
                     <span class="title">Preview</span>
                 </div>
-                <p>{{ currentLesson.notes }}</p>
+                <div class="markdown" v-html="getLessonNotesPreview()"></div>
             </div>
 
             <div class="editor-column" v-if="selectedSentence">

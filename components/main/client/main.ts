@@ -1,3 +1,5 @@
+import LessonNotesComponent from '../../study/client/LessonNotesComponent';
+
 Meteor.startup(() => {
 
     var router = new VueRouter({

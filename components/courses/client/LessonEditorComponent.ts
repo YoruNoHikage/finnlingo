@@ -1,3 +1,10 @@
+import { Remarkable } from 'remarkable';
+import { linkify } from 'remarkable/linkify';
+
+const md = new Remarkable('full', {
+    breaks: true,
+}).use(linkify);
+
 @Decorators.vueComponent("lesson-editor")
 class LessonEditorComponent
 {
@@ -176,6 +183,10 @@ class LessonEditorComponent
 
     saveNotes() {
         CoursesApi.updateCourse(this.currentCourse);
+    }
+
+    getLessonNotesPreview() {
+        return md.render(this.currentLesson.notes);
     }
 }
 this.LessonEditorComponent = LessonEditorComponent;

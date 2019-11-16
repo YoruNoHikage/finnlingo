@@ -2,8 +2,8 @@
     <div class="content notes">
       <top-bar back-link="/" back-link-text="Exit notes" />
 
-      <h1>{{ lesson.name }}</h1>
-      <p>{{ lesson.notes }}</p>
+      <h1>{{ name }}</h1>
+      <div class="markdown" v-html="getLessonNotes()"></div>
 
       <router-link v-bind:to="'/study/' + $route.params.courseid + '/lessons/' + $route.params.lessonid">
         Start lesson

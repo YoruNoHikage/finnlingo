@@ -8,7 +8,8 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.55",
     "core-js": "^2.5.7",
-    "meteor-node-stubs": "~0.2.4"
+    "meteor-node-stubs": "~0.2.4",
+    "remarkable": "^2.0.0"
   },
   "devDependencies": {
     "node-split": "^1.0.1"

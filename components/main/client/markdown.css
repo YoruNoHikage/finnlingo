@@ -1,0 +1,103 @@
+.markdown p {
+  margin: 20px 0;
+}
+
+.markdown img[alt] {
+  margin: 0;
+}
+
+.markdown mark {
+  background-color: rgb(146, 233, 148);
+}
+
+.markdown ins {
+  text-decoration: none;
+  color: rgb(108, 173, 109);
+}
+
+.markdown ins::before {
+  content: '+';
+  color: rgb(0, 151, 3);
+}
+
+.markdown hr {
+  border: 0;
+  border-top: 2px solid rgb(146, 233, 148);
+  height: 0;
+  margin: 40px 0;
+}
+
+.markdown pre {
+  overflow-x: auto;
+  background: #f7f7f7;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.markdown a {
+  color: rgb(108, 173, 109);
+}
+
+.markdown a:hover {
+  color: #87D788;
+}
+
+.markdown a.footnote-backref {
+  text-decoration: none;
+}
+
+.markdown blockquote {
+  background: #f7f7f7;
+  padding: 10px;
+  border-left: 5px solid #87D788;
+  margin: 0;
+}
+
+.markdown blockquote p:first-child {
+  margin-top: 5px;
+}
+
+.markdown blockquote p:last-child {
+  margin-bottom: 5px;
+}
+
+.markdown table {
+  border-spacing: 0;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.markdown th, .markdown td {
+  padding: 10px 12px;
+}
+
+.markdown th {
+  background: #87D788;
+  color: #fff;
+}
+
+.markdown thead tr th:first-child {
+  border-radius: 10px 0 0;
+}
+
+.markdown thead tr th:last-child {
+  border-radius: 0 10px 0 0;
+}
+
+.markdown td {
+  border-bottom: 2px solid #87D788;
+  border-right: 2px solid #87D788;
+  vertical-align: top;
+}
+
+.markdown tr td:first-child {
+  border-left: 2px solid #87D788;
+}
+
+.markdown tr:last-child td:first-child {
+  border-radius: 0 0 0 10px;
+}
+
+.markdown tr:last-child td:last-child {
+  border-radius: 0 0 10px 0;
+}

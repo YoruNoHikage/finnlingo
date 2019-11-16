@@ -111,6 +111,10 @@
     resize: none;
 }
 
+.lesson-editor .editor-column .markdown {
+    padding: 10px;
+}
+
 .lesson-editor .top-bar .menu {
     margin: 0 auto;
     display: block;

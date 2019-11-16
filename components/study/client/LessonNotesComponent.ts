@@ -1,8 +1,16 @@
+import { Remarkable } from 'remarkable';
+import { linkify } from 'remarkable/linkify';
+
+const md = new Remarkable('full', {
+    breaks: true,
+}).use(linkify);
+
 @Decorators.vueComponent('notes')
-class LessonNotesComponent {
+export default class LessonNotesComponent {
     $route: Route;
 
-    lesson: Lesson = null;
+    name: string = '';
+    notes: string = '';
 
     created() {
         StudyApi.getLesson(this.$route.params.courseid, this.$route.params.lessonid, (err, result) => {
@@ -10,9 +18,12 @@ class LessonNotesComponent {
                 alert(err);
                 return;
             }
-            this.lesson = result;
+            this.name = result.name;
+            this.notes = result.notes;
         });
     }
 
+    getLessonNotes() {
+        return md.render(this.notes);
+    }
 }
-this.LessonNotesComponent = LessonNotesComponent;
