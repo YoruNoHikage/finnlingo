@@ -6,6 +6,7 @@ Meteor.startup(() => {
             { path: '/', component: new DashboardComponent() },
             { path: '/login', component: new LoginComponent() },
             { path: '/study/:courseid/lessons/:lessonid', component: new StudyComponent() },
+            { path: '/study/:courseid/lessons/:lessonid/notes', component: new LessonNotesComponent() },
             { path: '/courses', component: new CoursesComponent() },
             { path: '/courses/:id', component: new CoursesComponent() },
             { path: '/courses/:id/lessons/:lessonid', component: new LessonEditorComponent() }

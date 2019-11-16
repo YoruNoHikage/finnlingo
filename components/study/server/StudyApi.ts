@@ -119,5 +119,18 @@ class StudyApi
 
         return { streakDays: user.study.streakDays, xpTillGoal: user.study.dailyGoal - user.study.lastDateXP };
     }
+
+    @Decorators.method
+    static getLesson(courseId, lessonId, callback?) {
+        const tree = Courses.findOne(courseId, { fields: { tree: 1 }}).tree;
+
+        for (const row of tree) {
+            const lesson = row.lessons.find(lesson => lesson.id === lessonId)
+            if (lesson) {
+                return lesson;
+                break;
+            }
+        }
+    }
 }
 this.StudyApi = StudyApi;

@@ -3,17 +3,22 @@
         <div class="lesson-editor">
             <div class="top-bar">
                 <router-link class="back-link" v-bind:to="'/courses/' + $route.params.id">Back<template v-if="windowWidth > 700"> to course tree</template></router-link>
-                <span class="menu" v-if="windowWidth < 1000">
-                    <a href="javascript: void(0);" v-bind:class="{ selected: showTab == 'words'}" v-on:click="showTab='words'; selectedSentence = null;">Words</a>
-                    <a href="javascript: void(0);" v-bind:class="{ selected: showTab == 'sentences'}" v-on:click="showTab='sentences'; selectedWord = null;">Sentences</a>
+                <span class="menu">
+                    <a  v-if="windowWidth < 1000" href="javascript: void(0);" v-bind:class="{ selected: showTab == 'words'}" v-on:click="showTab='words'; selectedSentence = null;">Words</a>
+                    <a  v-if="windowWidth < 1000" href="javascript: void(0);" v-bind:class="{ selected: showTab == 'sentences'}" v-on:click="showTab='sentences'; selectedWord = null;">Sentences</a>
+                    <a v-if="windowWidth >= 1000" href="javascript: void(0);" v-bind:class="{ selected: showTab == 'sentences'}" v-on:click="showTab='sentences'">Course</a>
+                    <a href="javascript: void(0);" v-bind:class="{ selected: showTab == 'notes'}" v-on:click="showTab='notes'; selectedWord = null; selectedSentence = null;">Notes</a>
                 </span>
                 <a href="javascript: void(0);" 
                    class="status-button"
                    v-bind:class="{ 'warning': wordsCount >= 10 || wordsForReuse.length && reusedCount <= 10 || sentencesCount > 19 || sentencesCount < 11 || incompleteCount > 0 }"
                    v-on:click="showThermometer()"><i class="fa fa-thermometer-3"></i></a>
             </div>
-            <div class="words-column" v-if="windowWidth > 1000 || showTab == 'words' && (!selectedWord || windowWidth > 700)">
-                <h4>Words</h4>
+
+            <div class="words-column" v-if="(windowWidth > 1000 && showTab != 'notes') || showTab == 'words' && (!selectedWord || windowWidth > 700)">
+                <div class="top-bar">
+                    <h4>Words</h4>
+                </div>
                 <list-editor 
                     v-bind:items="lessonWords"
                     can-edit="text"
@@ -62,8 +67,10 @@
                 <h4>Remarks</h4>
                 <textarea v-model="selectedWord.remarks" v-on:blur="WordsApi.updateWord(selectedWord)"></textarea>
             </div>
-            <div class="sentences-column" v-if="windowWidth > 1000 || showTab == 'sentences' && (!selectedSentence || windowWidth > 700)">
-                <h4>Sentences</h4>
+            <div class="sentences-column" v-if="(windowWidth > 1000 && showTab != 'notes') || showTab == 'sentences' && (!selectedSentence || windowWidth > 700)">
+                <div class="top-bar">
+                    <h4>Sentences</h4>
+                </div>
                 <p class="description">
                     Sentences will appear in the lesson in exactly same order as defined below.
                     <br/>
@@ -99,6 +106,25 @@
                     </template>
                 </list-editor>
             </div>
+
+            <div class="notes-column" v-if="showTab == 'notes' && (!previewNotes || windowWidth >= 700)">
+                <div class="top-bar">
+                    <h4>Notes</h4>
+                    <a href="javascript: void(0);" v-if="windowWidth < 700" v-on:click="previewNotes = true">Preview</a>
+                </div>
+                <p class="description">
+                    Unless empty, notes will appear next to the lesson on the tree. You can use markdown to format your notes.
+                </p>
+                <textarea placeholder="Write your notes here..." v-model="currentLesson.notes" v-on:blur="saveNotes()"></textarea>
+            </div>
+            <div class="editor-column" v-if="showTab == 'notes' && (previewNotes || windowWidth >= 700)">
+                <div class="top-bar">
+                    <a href="javascript: void(0);" v-if="windowWidth < 700" v-on:click="previewNotes = false">Back</a>
+                    <span class="title">Preview</span>
+                </div>
+                <p>{{ currentLesson.notes }}</p>
+            </div>
+
             <div class="editor-column" v-if="selectedSentence">
                 <div class="top-bar">
                     <a href="javascript: void(0);" v-if="windowWidth < 700" v-on:click="selectedSentence = null">Back</a>

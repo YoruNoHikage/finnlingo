@@ -20,6 +20,7 @@
 }
 .lesson-editor .words-column,
 .lesson-editor .sentences-column,
+.lesson-editor .notes-column,
 .lesson-editor .editor-column {
     background-color: #fff;
     float: left;
@@ -37,6 +38,11 @@
 .lesson-editor .sentences-column {
     width: 36%;
 }
+.lesson-editor .notes-column {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
 .lesson-editor .editor-column {
     position: relative;
     width: 36%;
@@ -47,8 +53,14 @@
     margin-left: 0;
     margin-right: 0;
 }
+.lesson-editor .notes-column + .editor-column {
+    width: 44%;
+}
 .lesson-editor h4 {
     margin-left: 10px;
+}
+.lesson-editor .top-bar > h4 {
+    margin: 0;
 }
 .lesson-editor p {
     margin-left: 10px;
@@ -88,38 +100,56 @@
     color: #00A090;
 }
 
-@media (max-width: 1000px) {
-    .lesson-editor .top-bar .menu {
-        margin: 0 auto;
-        display: block;
-    }
-    .lesson-editor .top-bar .menu a {
-        padding: 3px 9px;
-        padding-left: 12px;
-        border-radius: 10px;
-        background-color: #E8E7E6;
-        color: #777;
-        text-decoration: none;
-    }
-    .lesson-editor .top-bar .menu .selected {
-        font-weight: bold;
-        text-decoration: underline;
-    }
+.lesson-editor .notes-column textarea {
+    width: 100%;
+    border: none;
+    background: #f7f7f7;
+    padding: 20px;
+    display: block;
+    flex: 1;
+    border-radius: 0 0 10px 10px;
+    resize: none;
+}
 
+.lesson-editor .top-bar .menu {
+    margin: 0 auto;
+    display: block;
+}
+.lesson-editor .top-bar .menu a {
+    padding: 3px 9px;
+    padding-left: 12px;
+    border-radius: 10px;
+    background-color: #E8E7E6;
+    color: #777;
+    text-decoration: none;
+}
+.lesson-editor .top-bar .menu .selected {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
     .lesson-editor .words-column {
         width: 40%;
     }
     .lesson-editor .sentences-column {
         width: 40%;
     }
+    .lesson-editor .notes-column {
+        width: 50%;
+    }
     .lesson-editor .editor-column {
         width: 50%;
+    }
+    .lesson-editor .notes-column + .editor-column {
+        width: 42%;
     }
 }
 
 @media (max-width: 700px) {
     .lesson-editor .words-column,
     .lesson-editor .sentences-column,
+    .lesson-editor .notes-column,
     .lesson-editor .editor-column {
         width: calc(100% - 48px);
     }

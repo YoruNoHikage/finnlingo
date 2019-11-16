@@ -1,7 +1,10 @@
 class CoursesApi {
     @Decorators.publish
-    static subscribeToCourses(): Mongo.Cursor<Course> {
+    static subscribeToCourses(courseId?): Mongo.Cursor<Course> {
         var user = ACL.getUserOrThrow(this);
+        if (courseId) {
+            return Courses.find({ _id: courseId });
+        }
         return Courses.find();
     }
 

@@ -7,10 +7,14 @@ class LessonEditorComponent
 
     words: Word[] = [];
     sentences: Sentence[] = [];
+    notes: string = "";
     editSentence: Sentence = null;
 
+    currentCourse: Course = null;
+    currentLesson: Lesson = null;
     selectedWord: Word = null;
     selectedSentence: Sentence = null;
+    previewNotes: boolean = false;
     windowWidth = 1200;
     showTab = 'sentences';
     wordPictures = {};
@@ -25,8 +29,21 @@ class LessonEditorComponent
         });
         WordsApi.subscribeToWords(this.$route.params.lessonid);
         SentencesApi.subscribeToSentences(this.$route.params.lessonid);
+        CoursesApi.subscribeToCourses(this.$route.params.courseid);
 
         Tracker.autorun(() => {
+            const courses = Courses.find().fetch();
+            if (courses[0]) {
+                this.currentCourse = courses[0];
+
+                for (const row of this.currentCourse.tree) {
+                    const lesson = row.lessons.find(lesson => lesson.id === this.$route.params.lessonid)
+                    if (lesson) {
+                        this.currentLesson = lesson;
+                        break;
+                    }
+                }
+            }
             this.words = Words.find().fetch();
             this.sentences = Sentences.find({}, { sort: { order: 1 } }).fetch();
         });
@@ -38,6 +55,7 @@ class LessonEditorComponent
         this.editSentence = null;
         this.selectedWord = null;
         this.selectedSentence = null;
+        this.previewNotes = false;
         this.showTab = 'sentences';
         this.displayStatus = false;
     }
@@ -156,5 +174,8 @@ class LessonEditorComponent
             return 'Add new translation';
     }
 
+    saveNotes() {
+        CoursesApi.updateCourse(this.currentCourse);
+    }
 }
 this.LessonEditorComponent = LessonEditorComponent;

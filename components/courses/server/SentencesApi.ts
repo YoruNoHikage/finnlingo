@@ -60,7 +60,11 @@ class SentencesApi {
     // this is a very heavy operation
     // probably need to rewrite later
     static refreshWordHints(word) {
-        var sentences = Sentences.find({ text: { $regex: word.replace(/[^a-zäö]/g,''), $options: 'i' } }, { fields: { text: 1, lessonId: 1 } }).fetch();
+        var sentences = Sentences.find({
+            text: { $regex: word.replace(/[^a-zäö]/g,''), $options: 'i' },
+        }, {
+            fields: { text: 1, lessonId: 1 },
+        }).fetch();
         for (var sentence of sentences) {
             Sentences.update(
                 { _id: sentence._id }, 

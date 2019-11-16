@@ -84,6 +84,7 @@ Sentences = new Mongo.Collection<Sentence>("sentences");
 interface Lesson {
     id: string;
     name: string;
+    notes: string;
     icon: string;
     isOptional?: boolean;
     disabled?: boolean;
