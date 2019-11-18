@@ -142,14 +142,6 @@ div.clearfix {
 	font-weight: bold;
 }
 
-.small-gray-link {
-	color: #D7D9D8;
-	text-decoration: none;
-	font-size: 15px;
-	display: inline-block;
-	margin-left: 10px;
-}
-
 .avatar {
 	border-radius: 100%;
 }

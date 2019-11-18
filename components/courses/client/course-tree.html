@@ -2,7 +2,7 @@
     <div v-bind:class="{ 'course-tree': true, 'study-mode': mode!='edit' }">
         <h2>
             <input v-if="mode=='edit'" type="text" v-model="course.name" v-on:blur="saveCourse()">
-            <template v-else>{{course.name}} <router-link class="small-gray-link" to="/courses">select another course</router-link></template>
+            <template v-else>{{course.name}}</template>
         </h2>
         <div v-for="row in course.tree" class="row">
             <template v-for="lesson in row.lessons">
