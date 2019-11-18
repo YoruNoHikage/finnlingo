@@ -4,15 +4,15 @@
             <div class="top-bar">
                 <router-link class="back-link" v-bind:to="'/courses/' + $route.params.id">Back<template v-if="windowWidth > 700"> to course tree</template></router-link>
                 <span class="menu">
-                    <a  v-if="windowWidth < 1000" href="javascript: void(0);" v-bind:class="{ selected: showTab == 'words'}" v-on:click="showTab='words'; selectedSentence = null;">Words</a>
-                    <a  v-if="windowWidth < 1000" href="javascript: void(0);" v-bind:class="{ selected: showTab == 'sentences'}" v-on:click="showTab='sentences'; selectedWord = null;">Sentences</a>
-                    <a v-if="windowWidth >= 1000" href="javascript: void(0);" v-bind:class="{ selected: showTab == 'sentences'}" v-on:click="showTab='sentences'">Course</a>
-                    <a href="javascript: void(0);" v-bind:class="{ selected: showTab == 'notes'}" v-on:click="showTab='notes'; selectedWord = null; selectedSentence = null;">Notes</a>
+                    <button class="button-link" v-if="windowWidth < 1000" v-bind:class="{ selected: showTab == 'words'}" v-on:click="showTab='words'; selectedSentence = null;">Words</button>
+                    <button class="button-link" v-if="windowWidth < 1000" v-bind:class="{ selected: showTab == 'sentences'}" v-on:click="showTab='sentences'; selectedWord = null;">Sentences</button>
+                    <button class="button-link" v-if="windowWidth >= 1000" v-bind:class="{ selected: showTab == 'sentences'}" v-on:click="showTab='sentences'">Course</button>
+                    <button class="button-link" v-bind:class="{ selected: showTab == 'notes'}" v-on:click="showTab='notes'; selectedWord = null; selectedSentence = null;">Notes</button>
                 </span>
-                <a href="javascript: void(0);" 
-                   class="status-button"
+                <button
+                   class="button-icon status-button"
                    v-bind:class="{ 'warning': wordsCount >= 10 || wordsForReuse.length && reusedCount <= 10 || sentencesCount > 19 || sentencesCount < 11 || incompleteCount > 0 }"
-                   v-on:click="showThermometer()"><i class="fa fa-thermometer-3"></i></a>
+                   v-on:click="showThermometer()"><i class="fa fa-thermometer-3"></i></button>
             </div>
 
             <div class="words-column" v-if="(windowWidth > 1000 && showTab != 'notes') || showTab == 'words' && (!selectedWord || windowWidth > 700)">
@@ -33,7 +33,7 @@
             </div>
             <div class="editor-column" v-if="selectedWord" v-bind:class="{ hidden: !!selectedSentence }">
                 <div class="top-bar">
-                    <a href="javascript: void(0);" v-if="windowWidth < 700" v-on:click="selectedWord = null">Back</a>
+                    <button class="button-link" v-if="windowWidth < 700" v-on:click="selectedWord = null">Back</button>
                     <span class="title">Word: {{selectedWord.text}}</span>
                 </div>
                 <h4>Translations</h4>
@@ -91,18 +91,18 @@
                                 v-on:keyup.enter="SentencesApi.updateSentence(props.item); editSentence = null"
                                 v-model="props.item.text" />
                         <template v-else>
-                            <a href="javascript:void(0);" v-on:click="selectSentence(props.item)">
+                            <button class="button-link" v-on:click="selectSentence(props.item)">
                                 <template v-for="token in Utilities.getSentenceTokens(props.item.text)">
                                     <span v-if="props.item.wordHints[token.toLowerCase()]" class="word-with-hint">{{token}}</span>
                                     <template v-else>{{token}}</template>
                                 </template>
-                            </a>
+                            </button>
                         </template>
                     </template>
                     <template slot="buttons" scope="props">
-                        <a href="javascript:void(0);" v-on:click="startSentenceEditing(props.item)"><i class="fa fa-pencil"></i></a>
-                        <a href="javascript:void(0);" v-on:click="changeSentenceOrder(props.item,-1)"><i class="fa fa-chevron-up"></i></a>
-                        <a href="javascript:void(0);" v-on:click="changeSentenceOrder(props.item,1)"><i class="fa fa-chevron-down"></i></a>
+                        <button class="button-icon" v-on:click="startSentenceEditing(props.item)"><i class="fa fa-pencil"></i></button>
+                        <button class="button-icon" v-on:click="changeSentenceOrder(props.item,-1)"><i class="fa fa-chevron-up"></i></button>
+                        <button class="button-icon" v-on:click="changeSentenceOrder(props.item,1)"><i class="fa fa-chevron-down"></i></button>
                     </template>
                 </list-editor>
             </div>
@@ -110,7 +110,7 @@
             <div class="notes-column" v-if="showTab == 'notes' && (!previewNotes || windowWidth >= 700)">
                 <div class="top-bar">
                     <h4>Notes</h4>
-                    <a href="javascript: void(0);" v-if="windowWidth < 700" v-on:click="previewNotes = true">Preview</a>
+                    <button class="button-link" v-if="windowWidth < 700" v-on:click="previewNotes = true">Preview</button>
                 </div>
                 <p class="description">
                     Unless empty, notes will appear next to the lesson on the tree. You can use markdown to format your notes.
@@ -119,7 +119,7 @@
             </div>
             <div class="editor-column" v-if="showTab == 'notes' && (previewNotes || windowWidth >= 700)">
                 <div class="top-bar">
-                    <a href="javascript: void(0);" v-if="windowWidth < 700" v-on:click="previewNotes = false">Back</a>
+                    <button class="button-link" v-if="windowWidth < 700" v-on:click="previewNotes = false">Back</button>
                     <span class="title">Preview</span>
                 </div>
                 <div class="markdown" v-html="getLessonNotesPreview()"></div>
@@ -127,7 +127,7 @@
 
             <div class="editor-column" v-if="selectedSentence">
                 <div class="top-bar">
-                    <a href="javascript: void(0);" v-if="windowWidth < 700" v-on:click="selectedSentence = null">Back</a>
+                    <button class="button-link" v-if="windowWidth < 700" v-on:click="selectedSentence = null">Back</button>
                     <span class="title">{{selectedSentence.text}}</span>
                 </div>
                 <h4>Test type</h4>

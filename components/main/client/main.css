@@ -71,6 +71,13 @@ div.clearfix {
     padding: 8px;
 }
 
+.button-icon {
+	background: none;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
 .row {
     padding-top: 12px;
     padding-left: 12px;
@@ -85,11 +92,12 @@ div.clearfix {
 	border-left: 4px solid #D88700;
 }
 
-.list-editor a > i.fa {
+.list-editor .button-icon > i.fa {
 	color: #D7D9D8;
 	padding-left: 4px;
+	font-size: 20px;
 }
-.list-editor a > i.fa:hover {
+.list-editor .button-icon > i.fa:hover {
 	color: #B7B9B8;
 }
 
@@ -166,7 +174,7 @@ div.clearfix {
 	text-align: right;
 	padding-right: 20px;
 }
-.sidemenu a {
+.sidemenu .button-link {
 	color: #B7B9B8;
 }
 .sidebar {

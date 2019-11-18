@@ -35,6 +35,11 @@
     color: #222;
     text-decoration: none;
 }
+.course-tree .lesson-icon-link {
+    background: none;
+    border: none;
+    padding: 0;
+}
 .course-tree .lesson-icon {
     font-size: 48px;
     padding-bottom: 8px;
@@ -80,7 +85,7 @@
     background: #D8D7D6;
 }
 
-.course-tree .add-lesson a i {
+.course-tree .add-lesson i {
     font-size: 112px;
     color: #E7E9E8;
     margin-left: 20px;
@@ -148,7 +153,7 @@
 .icon-editor {
     text-align: center;
 }
-.icon-editor a {
+.icon-editor .button-icon {
     font-size: 48px;
     padding: 8px;
     color: #848484;
@@ -157,6 +162,6 @@
     height: 50px;
 }
 
-.icon-editor a > i.fa {
+.icon-editor .button-icon > i.fa {
     color: #848484;
 }

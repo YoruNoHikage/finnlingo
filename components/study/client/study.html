@@ -16,9 +16,8 @@
                                     {{ translation }}
                                 </span>
                             </span>
-                            <a v-bind:class="{ 'word-with-hint': true }"
-                            href="javascript:void(0);"
-                            v-on:click="showHint = token">{{token}}</a>
+                            <button class="button-link" v-bind:class="{ 'word-with-hint': true }"
+                            v-on:click="showHint = token">{{token}}</button>
                         </span>
                         <template v-else>{{token}}</template>
                     </template>
@@ -88,9 +87,9 @@
                 </div>
                 <div class="attribution-bar">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> are licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
             </template>
-            <a href="javascript:void(0);" v-bind:class="{ 'check-button': true, disabled: result == CheckResult.None && !answer && selectedWords.length == 0 }" v-on:click="check()">
+            <button v-bind:class="{ 'check-button': true, disabled: result == CheckResult.None && !answer && selectedWords.length == 0 }" v-on:click="check()">
                 {{ result == CheckResult.None ? 'Check' : 'Continue' }}
-            </a>
+            </button>
 
             <div class="message" 
                  v-if="result != CheckResult.None && sentences[index] && sentences[index].testType != SentenceTestType.Notes" 

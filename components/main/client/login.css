@@ -98,14 +98,15 @@
 }
 
 .button-link {
-  font-size: 20px;
-  font-family: 'Dosis', 'Raleway', sans-serif;
+  font-size: inherit;
+  font-family: inherit;
   background: none;
   border: none;
   text-decoration: underline;
   cursor: pointer;
   margin: auto;
   padding: 0;
+  user-select: auto;
 }
 
 .button-link:hover {

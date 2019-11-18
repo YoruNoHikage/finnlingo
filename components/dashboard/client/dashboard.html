@@ -2,8 +2,8 @@
     <div class="dashboard content">
         <top-bar />
         <div class="sidemenu" v-if="windowWidth < 1000">
-            <a href="javascript: void(0);" v-if="!showSideBar" v-on:click="showSideBar = true">Show Leaderboard</a>
-            <a href="javascript: void(0);" v-if="showSideBar" v-on:click="showSideBar = false">Hide Leaderboard</a>
+            <button class="button-link" v-if="!showSideBar" v-on:click="showSideBar = true">Show Leaderboard</button>
+            <button class="button-link" v-if="showSideBar" v-on:click="showSideBar = false">Hide Leaderboard</button>
         </div>
         <div class="sidebar" v-if="windowWidth > 1000 || showSideBar">
             <h4 v-if="todayLeaders.length > 0">Today Top 10</h4>

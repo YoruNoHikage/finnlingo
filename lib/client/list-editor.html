@@ -2,8 +2,8 @@
     <div class="list-editor">
         <div v-for="item in items" v-bind:class="'row ' + (itemClass && itemClass(item) || '')">
             <slot v-bind:item="item">
-                <a v-if="editingInline != item" href="javascript:void(0)" v-on:click="selectItem(item)">
-                    {{ getItemText(item) }}</a>
+                <button class="button-link" v-if="editingInline != item" v-on:click="selectItem(item)">
+                    {{ getItemText(item) }}</button>
                 <span v-else>
                     <input type="text" v-model="item[canEdit]" v-on:blur="endInlineEditing(item)" v-on:keyup.enter="endInlineEditing(item)" />
                 </span>
@@ -11,12 +11,12 @@
 
             <div class="actions">
                 <slot name="buttons" v-bind:item="item"></slot>
-                <a href="javascript:void(0);" v-if="canEdit && (typeof canEdit === 'string' || canEdit(item))" v-on:click="editItem(item)"><i class="fa fa-pencil"></i></a>
-                <a href="javascript:void(0);" v-if="canRemove && (typeof canRemove === 'string' || canRemove(item))" v-on:click="removeItem(item)"><i class="fa fa-trash"></i></a>
+                <button class="button-icon" v-if="canEdit && (typeof canEdit === 'string' || canEdit(item))" v-on:click="editItem(item)"><i class="fa fa-pencil"></i></button>
+                <button class="button-icon" v-if="canRemove && (typeof canRemove === 'string' || canRemove(item))" v-on:click="removeItem(item)"><i class="fa fa-trash"></i></button>
             </div>
         </div>
         <div class="row" v-if="canAdd == null || canAdd == true || canAdd()">
-            <a href="javascript:void(0);" v-on:click="$emit('add')">{{ newItemText }}</a>
+            <button class="button-link" v-on:click="$emit('add')">{{ newItemText }}</button>
         </div>
     </div>
 </template>

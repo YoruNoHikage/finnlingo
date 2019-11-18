@@ -19,11 +19,11 @@
                 v-on:edit="editCourse"
                 v-on:remove="CoursesApi.removeCourse">
                 <template scope="props">
-                    <a href="javascript:void(0);" v-on:click="selectCourse(props.item)">{{props.item.name}}</a>
+                    <button class="button-link" v-on:click="selectCourse(props.item)">{{props.item.name}}</button>
                     ({{sentencesCount[props.item._id]}} sentences)
                 </template>
                 <template slot="buttons" scope="props">
-                    <a href="javascript:void(0);" v-on:click="downloadCourse(props.item)"><i class="fa fa-download"></i></a>
+                    <button class="button-icon" v-on:click="downloadCourse(props.item)"><i class="fa fa-download"></i></button>
                 </template>
             </list-editor>
             <p class="description">

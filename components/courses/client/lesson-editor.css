@@ -119,7 +119,8 @@
     margin: 0 auto;
     display: block;
 }
-.lesson-editor .top-bar .menu a {
+.lesson-editor .top-bar .menu a,
+.lesson-editor .top-bar .menu .button-link {
     padding: 3px 9px;
     padding-left: 12px;
     border-radius: 10px;
@@ -161,6 +162,7 @@
 }
 
 .lesson-editor .status-button {
+    font-size: inherit;
     border: 1px solid #B4B3B2;
     color: #00A090;
     border-radius: 100%;
