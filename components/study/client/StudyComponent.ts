@@ -62,7 +62,9 @@ class StudyComponent {
         }
     }
 
-    check() {
+    check(e) {
+        e.preventDefault();
+
         if (this.result == CheckResult.None) {
             if (!this.answer && this.selectedWords.length == 0)
                 return;
