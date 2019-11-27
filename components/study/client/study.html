@@ -82,9 +82,6 @@
                 </div>
                 <div class="attribution-bar">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> are licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
             </template>
-            <button v-bind:class="{ 'check-button': true, disabled: result == CheckResult.None && !answer && selectedWords.length == 0 }" v-on:click="check()">
-                {{ result == CheckResult.None ? 'Check' : 'Continue' }}
-            </button>
 
             <div class="message" 
                  v-if="result != CheckResult.None && sentences[index]"
@@ -95,6 +92,10 @@
                     {{ sentences[index].translations[0].text }}
                 </p>
             </div>
+
+            <button v-bind:class="{ 'check-button': true, disabled: result == CheckResult.None && !answer && selectedWords.length == 0 }" v-on:click="check()">
+                {{ result == CheckResult.None ? 'Check' : 'Continue' }}
+            </button>
         </div>
         <div class="finished" v-if="!!finished">
             <h2>Lesson finished!</h2>
