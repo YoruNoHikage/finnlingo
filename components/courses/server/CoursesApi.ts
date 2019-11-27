@@ -15,7 +15,7 @@ class CoursesApi {
         for (let row of tree)
             lessonIds = lessonIds.concat(row.lessons.map(l => l.id));
         
-        return Sentences.find({ lessonId: { $in: lessonIds }, testType: { $ne: SentenceTestType.Notes } }).count();
+        return Sentences.find({ lessonId: { $in: lessonIds } }).count();
     }
 
     @Decorators.method

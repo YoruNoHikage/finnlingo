@@ -154,17 +154,11 @@
                     v-bind:value="SentenceTestType.SelectMissingWord"
                     v-on:click="SentencesApi.updateSentence(selectedSentence)" />
                 <label for="test-type-selectmissingword">Select missing word</label>
-                <br/>
-                <input id="test-type-notes" type="radio" 
-                    v-model="selectedSentence.testType"
-                    v-bind:value="SentenceTestType.Notes"
-                    v-on:click="SentencesApi.updateSentence(selectedSentence)" />
-                <label for="test-type-notes">Notes</label>
                 <p class="description">
                     <template v-if="selectedSentence.testType == SentenceTestType.Default || selectedSentence.testType == SentenceTestType.ConstructSentence">
                         <span v-if="selectedSentence.testType == SentenceTestType.Default">
                             Student will have to type the correct translation of the sentence.
-                            Sentence can be English or Finnish.
+                            Sentence should be in the learning language (back translations are work in progress).
                             <br/>
                             Note: if you want words of the sentence to have hints on click, please create these words in the first column and provide translations for them!
                             Hints will only be shown if system thinks that user doesn't know the word well.
@@ -176,12 +170,6 @@
                         </span>
                         <br/>
                         You can add several translations, all of them will be accepted.
-                        The following cases are processed automatically by Finnlingo:
-                        <ul>
-                            <li>I am = I'm, we're = we are, you're = you are, they're = they are, it is = it's</li>
-                            <li>do not = don't, does not = doesn't, did not = didn't</li>
-                            <li>Articles a/an/the are ignored</li>
-                        </ul>
                     </template>
                     <template v-else-if="selectedSentence.testType == SentenceTestType.WordPictures">
                         For Word pictures type of test, please use the English word as the sentence text and put the Finnish word into translation.
@@ -194,13 +182,8 @@
                         <strong>First choice</strong> should be the correct one!
                         Choices will be shuffled when presented in the test.
                     </template>
-                    <template v-else-if="selectedSentence.testType == SentenceTestType.Notes">
-                        Student will be shown note.
-                        Sentence text will be used as the title of the note.
-                    </template>
                 </p>
                 <h4 v-if="selectedSentence.testType == SentenceTestType.SelectMissingWord">Choices</h4>
-                <h4 v-else-if="selectedSentence.testType == SentenceTestType.Notes">Note content</h4>
                 <h4 v-else-if="selectedSentence.testType == SentenceTestType.WordPictures">Finnish Translation</h4>
                 <h4 v-else>Translations</h4>
                 <list-editor
