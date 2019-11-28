@@ -45,13 +45,30 @@ class SentencesApi {
     static generateWordHints(lessonId: string, text: string) {
         let lessonIds = [];
         Courses.findOne({ "tree.lessons.id": lessonId }).tree.forEach(r => r.lessons.forEach(l => lessonIds.push(l.id)));
-        let wordHints = {}; 
+        let wordHints = {};
+        const normalizedText = text.split(/[,\.\?!:\s"]+/).join(' ').trim().toLowerCase();
+
         for (let word of Utilities.sentenceToWords(text)) {
-            let wordObj = Words.findOne({ lessonId: { $in: lessonIds }, $or: [{ text: word }, { "inflections.text": word }]});
-            let html = '';
-            if (wordObj) {
-                let inflection = wordObj.inflections.filter(i => i.text == word)[0];
-                wordHints[word] = { wordId: wordObj._id, translations: inflection ? [ inflection.remarks ] : wordObj.translations.map(t => t.text) };
+            const matchingWords = Words.find({
+                lessonId: { $in: lessonIds },
+                $or: [{ text: new RegExp(word) }, { "inflections.text": new RegExp(word) }]
+            }).fetch();
+
+            for (let dictionaryWord of matchingWords) {
+                if (normalizedText.includes(dictionaryWord.text)) {
+                    wordHints[dictionaryWord.text] = {
+                        wordId: dictionaryWord._id,
+                        translations: dictionaryWord.translations.map(t => t.text),
+                    };
+                }
+
+                const matchingInflections = dictionaryWord.inflections.filter(i => normalizedText.includes(i.text));
+                if (matchingInflections.length) {
+                    wordHints[dictionaryWord.text] = {
+                        wordId: dictionaryWord._id,
+                        translations: matchingInflections.map(i => i.remarks),
+                    };
+                }
             }
         }
         return wordHints;

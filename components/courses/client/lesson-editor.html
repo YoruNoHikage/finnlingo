@@ -92,7 +92,7 @@
                                 v-model="props.item.text" />
                         <template v-else>
                             <button class="button-link" v-on:click="selectSentence(props.item)">
-                                <template v-for="token in Utilities.getSentenceTokens(props.item.text)">
+                                <template v-for="token in Utilities.getSentenceTokens(props.item.text, props.item.wordHints)">
                                     <span v-if="props.item.wordHints[token.toLowerCase()]" class="word-with-hint">{{token}}</span>
                                     <template v-else>{{token}}</template>
                                 </template>

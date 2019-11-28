@@ -2,25 +2,22 @@ var Decorators = this.Decorators || {};
 
 class Utilities {
     static sentenceToWords(s: string) {
-        var sentence = s.split(/[,\.-\?!:\s"]+/).join(' ').replace(/^\s+/,'').replace(/\s+$/,'').toLowerCase();
-        sentence = sentence.replace(/i'm/g,"i am").replace(/it's/g,"it is");
-        sentence = sentence.replace(/they're/g,"they are").replace(/we're/g,"we are").replace(/you're/g,"you are");
-        sentence = sentence.replace(/don't/g,"do not").replace(/doesn't/g,"does not").replace(/didn't/g,"did not");
-        sentence = sentence.replace(/\b(a|an|the) ([a-zA-Z']+)/g, "$2");
+        var sentence = s.split(/[,\.\-\?!:\s"]+/).join(' ').trim().toLowerCase();
+
         return sentence.split(' ');
     }
 
-    static getSentenceTokens(text) {
-        var tokens = [];
-        var delimiterRegex = /[,\.-\?!:\s"]/;
-        for (let i = 0; i < text.length; i++) {
-            let l = tokens.length;
-            if (l && !delimiterRegex.test(tokens[l-1]) && !delimiterRegex.test(text[i]))
-                tokens[l-1] += text[i];
-            else
-                tokens.push(text[i]);
+    static getSentenceTokens(text, dictionary) {
+        if (!dictionary) {
+            return text.split(/([,\.\-\?!:\s"])/g);
         }
-        return tokens;
+
+        return text.split(/([,\.\?!:\s"])/g).map(word => {
+            if (word.includes('-') && word.split('-').some(w => dictionary[w])) {
+                return word.split(/(\-)/g);
+            }
+            return word;
+        }).flat();
     }
 
     static getPictureId(text) {
