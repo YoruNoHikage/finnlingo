@@ -63,12 +63,12 @@ class SentencesApi {
                 }
 
                 const matchingInflections = dictionaryWord.inflections.filter(i => normalizedText.includes(i.text));
-                if (matchingInflections.length) {
-                    wordHints[dictionaryWord.text] = {
+                matchingInflections.map(inflection => {
+                    wordHints[inflection.text] = {
                         wordId: dictionaryWord._id,
                         translations: matchingInflections.map(i => i.remarks),
                     };
-                }
+                });
             }
         }
         return wordHints;
