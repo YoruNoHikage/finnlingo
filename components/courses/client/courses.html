@@ -19,8 +19,10 @@
                 v-on:edit="editCourse"
                 v-on:remove="CoursesApi.removeCourse">
                 <template scope="props">
-                    <button class="button-link" v-on:click="selectCourse(props.item)">{{props.item.name}}</button>
-                    ({{sentencesCount[props.item._id]}} sentences)
+                    <button class="button-link" v-on:click="selectCourse(props.item)">
+                        {{props.item.name}}
+                        ({{sentencesCount[props.item._id]}} sentences)
+                    </button>
                 </template>
                 <template slot="buttons" scope="props">
                     <button class="button-icon" v-on:click="downloadCourse(props.item)"><i class="fa fa-download"></i></button>

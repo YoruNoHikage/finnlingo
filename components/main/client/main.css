@@ -79,11 +79,12 @@ div.clearfix {
 }
 
 .row {
-    padding-top: 12px;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-bottom: 19px;
-    border-top: 1px solid #D7D9D8;
+	padding-top: 12px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-bottom: 19px;
+	border-top: 1px solid #D7D9D8;
+	display: flex;
 }
 .row.selected {
 	box-shadow: inset 0 0 25px #E8E8E7;
@@ -101,8 +102,13 @@ div.clearfix {
 	color: #B7B9B8;
 }
 
+.list-editor :first-child {
+	text-align: left;
+	margin: inherit;
+	flex: 1;
+}
 .list-editor .actions {
-	float: right;
+	white-space: nowrap;
 }
 
 .content {
@@ -112,8 +118,9 @@ div.clearfix {
 	padding-right: 15px;
 }
 
-.content.wide {
-    max-width: 1200px;
+.content.fluid {
+	max-width: inherit;
+	padding: 0;
 }
 
 @media (max-width: 800px) {

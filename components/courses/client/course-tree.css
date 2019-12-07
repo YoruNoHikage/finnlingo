@@ -8,11 +8,14 @@
 
 .course-tree h2 input {
     font-size: 48px;
-    margin-left: 20px;
+    padding-left: 20px;
+    width: 100%;
 }
 
 .course-tree .row {
     text-align: center;
+    justify-content: center;
+    align-items: baseline;
 }
 
 .course-tree.study-mode .row {
@@ -21,9 +24,7 @@
 
 .course-tree .lesson {
     position: relative;
-    display: inline-block;
-    width: 100px;
-    padding: 12px;
+    padding: 8px;
 }
 .course-tree .lesson a,
 .course-tree .lesson input {
@@ -86,7 +87,7 @@
 }
 
 .course-tree .add-lesson i {
-    font-size: 112px;
+    font-size: 48px;
     color: #E7E9E8;
     margin-left: 20px;
 }
@@ -94,8 +95,8 @@
 .course-tree .lesson .remove-link {
     position: absolute;
     font-size: 12px;
-    top: 10px;
-    right: 17px;
+    top: 4px;
+    right: 18px;
     color: #848484;
     width: 24px;
     height: 24px;
@@ -107,8 +108,8 @@
 .course-tree .lesson .icon-link {
     position: absolute;
     font-size: 12px;
-    bottom: 34px;
-    right: 17px;
+    bottom: 30px;
+    right: 18px;
     color: #848484;
     width: 24px;
     height: 24px;
@@ -120,8 +121,8 @@
 .course-tree .lesson .disable-link {
     position: absolute;
     font-size: 12px;
-    bottom: 34px;
-    left: 17px;
+    bottom: 30px;
+    left: 18px;
     color: #848484;
     width: 24px;
     height: 24px;
@@ -133,8 +134,8 @@
 .course-tree .lesson .course-link {
     position: absolute;
     font-size: 16px;
-    bottom: 34px;
-    right: 17px;
+    bottom: 28px;
+    right: 10px;
     color: #ffffff;
     width: 26px;
     height: 26px;

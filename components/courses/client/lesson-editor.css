@@ -181,6 +181,9 @@
     border-radius: 10px;
     border: 1px solid #D9D8D7;
 }
+.lesson-editor .status .row {
+    display: block;
+}
 .lesson-editor .status .warning {
     color: #D96454;
 }
