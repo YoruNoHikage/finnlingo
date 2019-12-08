@@ -12,6 +12,7 @@ class SentencesApi {
         var tmpSentences = Sentences.find({ lessonId: lessonId }, { sort: { order: -1 }}).fetch();
         Sentences.insert({
             text: text,
+            wordPicture: null,
             testType: SentenceTestType.Default,
             translations: [],
             backTranslations: [],
@@ -32,12 +33,13 @@ class SentencesApi {
             { _id: sentenceModel._id }, 
             { $set: { 
                 text: sentenceModel.text,
+                wordPicture: sentenceModel.testType === SentenceTestType.WordPictures ? sentenceModel.wordPicture : null,
                 testType: sentenceModel.testType,
                 translations: sentenceModel.translations,
                 backTranslations: sentenceModel.backTranslations,
                 order: sentenceModel.order,
                 wordHints: SentencesApi.generateWordHints(sentenceModel.lessonId, sentenceModel.text),
-                editor: userDisplayInfo
+                editor: userDisplayInfo,
             } }
         );
     }

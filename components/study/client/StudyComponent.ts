@@ -71,7 +71,12 @@ class StudyComponent {
             if (!this.answer)
                 this.answer = this.selectedWords.join(' ');
             var answer = Utilities.sentenceToWords(this.answer).join(' ');
-            if (this.sentences[this.index].testType == SentenceTestType.SelectMissingWord && this.sentences[this.index].translations[0].text == this.answer) {
+            const sentence = this.sentences[this.index];
+
+            if (
+                (sentence.testType == SentenceTestType.SelectMissingWord && sentence.translations[0].text == this.answer)
+                || (sentence.testType == SentenceTestType.WordPictures && sentence.text == this.answer)
+            ) {
                 this.result = CheckResult.Success;
             } else if (this.sentences[this.index].testType != SentenceTestType.SelectMissingWord && this.sentences[this.index].translations.some(t => answer == Utilities.sentenceToWords(t.text).join(' '))) {
                 this.result = CheckResult.Success;

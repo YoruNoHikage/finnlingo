@@ -186,5 +186,10 @@ class LessonEditorComponent
     getLessonNotesPreview() {
         return md.render(this.currentLesson.notes);
     }
+
+    selectWordPicture(picture: string) {
+        this.selectedSentence.wordPicture = picture.match(/\/(.+)\.svg/)[1];
+        SentencesApi.updateSentence(this.selectedSentence);
+    }
 }
 this.LessonEditorComponent = LessonEditorComponent;

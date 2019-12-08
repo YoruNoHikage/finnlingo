@@ -68,6 +68,7 @@ interface Sentence
 {
     _id?: string;
     text: string;
+    wordPicture: string;
     lessonId: string;
     order: number;
     testType: SentenceTestType;

@@ -61,26 +61,15 @@
                 </div>
             </template>
             <template v-else-if="sentences[index] && sentences[index].testType == SentenceTestType.WordPictures">
-                <h3>Which of those is {{sentences[index].text}}?</h3>
-                <div class="word-picture">
-                    <label for="option-0"><img v-bind:src="sentences[index].options[0].picture" /></label>
-                    <input id="option-0" type="radio" v-model="answer" v-bind:value="sentences[index].options[0].text" />
-                    <label for="option-0">{{sentences[index].options[0].text}}</label>
-                </div>
-                <div class="word-picture" v-if="sentences[index].options[1]">
-                    <label for="option-1"><img v-bind:src="sentences[index].options[1].picture" /></label>
-                    <input id="option-1" type="radio" v-model="answer" v-bind:value="sentences[index].options[1].text" />
-                    <label for="option-1">{{sentences[index].options[1].text}}</label>
-                </div>
-                <div class="word-picture" v-if="sentences[index].options[2]">
-                    <label for="option-2"><img v-bind:src="sentences[index].options[2].picture" /></label>
-                    <input id="option-2" type="radio" v-model="answer" v-bind:value="sentences[index].options[2].text" />
-                    <label for="option-2">{{sentences[index].options[2].text}}</label>
-                </div>
-                <div class="word-picture" v-if="sentences[index].options[3]">
-                    <label for="option-3"><img v-bind:src="sentences[index].options[3].picture" /></label>
-                    <input id="option-3" type="radio" v-model="answer" v-bind:value="sentences[index].options[3].text" />
-                    <label for="option-3">{{sentences[index].options[3].text}}</label>
+                <h3>Which of those is "{{sentences[index].translations[0].text}}"?</h3>
+                <div class="answer select-word-picture">
+                    <div v-for="(option, j) of sentences[index].options">
+                        <input v-bind:id="'option' + j" type="radio" v-model="answer" v-bind:value="option.text" />
+                        <label v-bind:for="'option' + j">
+                            <img class="word-picture" v-bind:src="option.picture" />
+                            {{option.text}}
+                        </label>
+                    </div>
                 </div>
                 <div class="attribution-bar">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> are licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
             </template>
@@ -91,7 +80,7 @@
                 <h2 v-if="result == CheckResult.Success">Correct!</h2>
                 <h2 v-else>Incorrect</h2>
                 <p v-if="result == CheckResult.Fail">Correct answer: 
-                    {{ sentences[index].translations[0].text }}
+                    {{ sentences[index].testType === SentenceTestType.WordPictures ? sentences[index].text : sentences[index].translations[0].text }}
                 </p>
             </div>
 

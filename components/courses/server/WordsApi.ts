@@ -1,7 +1,7 @@
 var fs = Npm.require('fs');
 
 class WordsApi {
-    static wordPictures: string[] = fs.readdirSync('../web.browser/app/').filter(fn => /\.svg$/.test(fn)).map(fn => fn.replace(/.svg$/, ''));
+    static wordPictures: string[] = fs.readdirSync('../web.browser/app/').filter(fn => /\.svg$/.test(fn) && fn !== 'broken-link.svg').map(fn => fn.replace(/.svg$/, ''));
 
     @Decorators.publish
     static subscribeToWords(lessonId): Mongo.Cursor<Word> {

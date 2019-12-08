@@ -15,7 +15,7 @@
                 <button class="button-icon" v-if="canRemove && (typeof canRemove === 'string' || canRemove(item))" v-on:click="removeItem(item)"><i class="fa fa-trash"></i></button>
             </div>
         </div>
-        <div class="row" v-if="canAdd == null || canAdd == true || canAdd()">
+        <div class="row" v-if="canAdd == null || canAdd == true || (canAdd && canAdd())">
             <button class="button-link" v-on:click="$emit('add')">{{ newItemText }}</button>
         </div>
     </div>

@@ -83,6 +83,22 @@
     width: auto;
     display: inline-block;
     vertical-align: top;
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    opacity: 0.5;
+    filter: grayscale(1);
+}
+.lesson-editor .editor-column .word-picture:hover {
+    opacity: 1;
+    background: #87D788;
+    filter: grayscale(0);
+}
+.lesson-editor .editor-column .word-picture.selected {
+    opacity: 1;
+    background: #87D788;
+    filter: grayscale(0);
 }
 
 .lesson-editor .words-column input {

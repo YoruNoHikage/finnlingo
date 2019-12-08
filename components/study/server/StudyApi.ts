@@ -4,24 +4,16 @@ class StudyApi
     static getSentences(lessonId, callback?) {
         var user = ACL.getUserOrThrow(this);
         var lessonSentences = Sentences.find({ lessonId: lessonId }, { sort: { order: 1 }}).fetch();
-        var wordPics: Word[];
-        var wordOptions: Word[];
+
         for (let sentence of lessonSentences) {
             if (sentence.testType == SentenceTestType.WordPictures) {
-                if (!wordPics) {
-                    wordPics = Words.find({ }, { fields: { text: 1, translations: 1 } }).fetch()
-                        .filter(w => w.translations[0] && WordsApi.wordPictures.some(wp => wp == Utilities.getPictureId(w.translations[0].text)));
-                }
-                
-                let rightChoice = wordPics.filter(wp => wp.text == sentence.translations[0].text)[0] 
-                    || (<Word>{ text: sentence.translations[0].text, translations: [{ text: "broken-link" }] });
-                let lessonPics = wordPics.filter(wp => wp._id != rightChoice._id && wp.lessonId == lessonId).sort(() => .5 - Math.random());
-                let otherPics = wordPics.filter(wp => wp._id != rightChoice._id && wp.lessonId != lessonId).sort(() => .5 - Math.random());
-                let choices = [rightChoice];
-                choices = choices.concat(lessonPics, otherPics);
-                choices = choices.slice(0, 4).sort(() => .5 - Math.random());
-                choices.forEach(c => c["picture"] = '/' + Utilities.getPictureId(c.translations[0].text) + '.svg');
-                sentence["options"] = choices;
+                const rightChoice = ({ text: sentence.text, wordPicture: sentence.wordPicture });
+                let otherChoices = lessonSentences.filter(s => s.testType === SentenceTestType.WordPictures && s._id !== sentence._id).sort(() => .5 - Math.random()).slice(0, 3).map(s => ({ text: s.text, wordPicture: s.wordPicture }));
+
+                let choices = [rightChoice, ...otherChoices];
+                choices.forEach(c => c["picture"] = '/' + c.wordPicture + '.svg');
+
+                sentence["options"] = choices.sort(() => .5 - Math.random());
             } else if (sentence.testType == SentenceTestType.SelectMissingWord) { 
                 sentence["options"] = sentence.translations.map(t => t.text).sort(() => .5 - Math.random());
             } else if (sentence.testType == SentenceTestType.ConstructSentence) {

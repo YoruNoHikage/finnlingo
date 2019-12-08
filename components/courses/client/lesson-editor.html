@@ -172,9 +172,15 @@
                         You can add several translations, all of them will be accepted.
                     </template>
                     <template v-else-if="selectedSentence.testType == SentenceTestType.WordPictures">
-                        For Word pictures type of test, please use the English word as the sentence text and put the Finnish word into translation.
+                        Select the picture corresponding to the word and write the translation below.
                         <p>
-                            <img class="word-picture" v-bind:src="wordPictures[Utilities.getPictureId(selectedSentence.text)] || '/broken-link.svg'" />
+                            <img
+                                v-for="picture of wordPictures"
+                                class="word-picture"
+                                v-bind:class="{ 'selected': picture === ('/' + selectedSentence.wordPicture + '.svg')  }"
+                                v-bind:src="picture || '/broken-link.svg'"
+                                v-on:click="selectWordPicture(picture)"
+                            />
                         </p>
                     </template>
                     <template v-else-if="selectedSentence.testType == SentenceTestType.SelectMissingWord">
@@ -184,7 +190,7 @@
                     </template>
                 </p>
                 <h4 v-if="selectedSentence.testType == SentenceTestType.SelectMissingWord">Choices</h4>
-                <h4 v-else-if="selectedSentence.testType == SentenceTestType.WordPictures">Finnish Translation</h4>
+                <h4 v-else-if="selectedSentence.testType == SentenceTestType.WordPictures">Translation</h4>
                 <h4 v-else>Translations</h4>
                 <list-editor
                     v-bind:items="selectedSentence.translations"

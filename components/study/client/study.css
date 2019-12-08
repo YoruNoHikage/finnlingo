@@ -85,6 +85,7 @@
     padding: 10px 15px 15px;
     box-shadow: 0px 3px 0 1px #e8e8e8;
     margin-bottom: 3px;
+    text-align: center;
 }
 
 .study .answer.select-missing-word input {
@@ -107,6 +108,45 @@
     box-shadow: 0px 1px 0 1px #9aacff;
 }
 
+
+.study .answer.select-word-picture {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    grid-auto-rows: min-content;
+}
+
+.study .answer.select-word-picture label {
+    display: block;
+    border-radius: 8px;
+    border: 2px solid #e8e8e8;
+    background: #f4f4f4;
+    padding: 10px 15px 15px;
+    box-shadow: 0px 3px 0 1px #e8e8e8;
+    margin-bottom: 3px;
+    text-align: center;
+}
+
+.study .answer.select-word-picture input {
+    display: none;
+}
+
+.study .answer.select-word-picture input:checked + label {
+    border: 2px solid #c9caff;
+    background: #dbddff;
+    margin-bottom: 0;
+    margin-top: 3px;
+    box-shadow: none;
+}
+
+.study .answer.select-word-picture label:hover {
+    border: 2px solid #9aacff;
+    background: #d9daff;
+    margin-bottom: 0;
+    margin-top: 2px;
+    box-shadow: 0px 1px 0 1px #9aacff;
+}
+
 .study .result-popup {
     position: absolute;
     margin-bottom: -80px;
@@ -116,10 +156,10 @@
 }
 
 .study .word-picture {
-    width: 30%;
-    display: inline-block;
-    padding-bottom: 10px;
-    padding-left: 10%;
+    display: block;
+    margin: auto;
+    padding: 20px;
+    width: 80%;
 }
 
 .study .construction {
@@ -148,18 +188,10 @@
 
 
 .study .attribution-bar {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
     font-size: 14px;
     color: #444;
-    padding: 7px 20px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    background: #E8E7E6;
-    width: calc(90% - 40px);
-    max-width: 540px;
+    padding: 20px;
+    text-align: center;
 }
 
 .study .attribution-bar a {
